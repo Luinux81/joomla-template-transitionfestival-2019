@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "https://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="3.0" type="template" client="site">
+    <name>Transition Festival 2019</name>
+    <version>1.0</version>
+    <creationDate>15/12/2018</creationDate>
+    <author>Luis BC</author>
+    <authorEmail>luinux81@gmail.com</authorEmail>
+    <copyright>Copyright (C) 2019 Transition Crew</copyright>
+    <description>Plantilla para Transition Festival 2019</description>
+    <files>
+        <filename>index.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>images</folder>
+      	<folder>html</folder>
+    </files>
+    <positions>
+        <position>debug</position>
+        <position>position-0</position>
+        <position>position-1</position>
+        <position>position-2</position>
+        <position>position-3</position>
+        <position>position-4</position>
+        <position>position-5</position>
+        <position>position-6</position>
+        <position>position-7</position>
+        <position>position-8</position>
+        <position>position-9</position>
+        <position>position-10</position>
+        <position>position-11</position>
+        <position>position-12</position>
+        <position>position-13</position>
+        <position>position-14</position>
+      	<position>position-15</position>
+      	<position>position-16</position>
+      	<position>position-17</position>
+		<position>position-18</position>
+		<position>position-19</position>
+		<position>position-20</position>
+    </positions>
+    <config>
+    </config>
+</extension>
