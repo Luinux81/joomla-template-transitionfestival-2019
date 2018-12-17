@@ -262,7 +262,7 @@ letter-spacing: 5px
 	position:absolute !important;
 	z-index:1;
 	height:300px !important;
-	
+	background-color:rgba(0,0,0,0) !important;
 }
 
 /****************************************************/
