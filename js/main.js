@@ -76,24 +76,10 @@ jQuery(document).ready(function(){
 });
 
 
-function esHomePage(){
-	var url=window.location.href;
-  
- 
-  	if( (url.search("fbclid=")>-1) || (url.search("video=0")>-1)  ){      
-      return true;
-    }
-    else{
-    	url=url.slice(-13);
-		return ((url.search("index.php/es")>-1) || (url.search("index.php/en")>-1));      
-    }    
-	
-}
-
 function mostrarCabecera(){
 	var url=window.location.href;
 	
-	if(esHomePage()){
+	if(esHomePage(url)){
 		return true;
 	}
 	else{
@@ -105,6 +91,53 @@ function mostrarCabecera(){
 		}
 	}
 }
+
+function esHomePage(url){
+	var res=url;
+	var index=url.indexOf("?option=com_content");
+	
+	if(index>0){
+		return false;		
+	}
+	else{
+		index=res.indexOf("?")
+
+		if(index>=0){
+			res=res.substring(0,index);
+		}
+
+		res=res.slice(res.indexOf("index.php"));
+		res=res.slice(9);
+		
+		if(res==""){
+			return true;
+		}
+		else{
+			index=res.indexOf("/");			
+			if(index>=0){
+				res=res.slice(index+1,res.length);
+				if(res==""){
+					return true;
+				}
+				else{
+					index=res.indexOf("/");
+					if(index>=0){
+						res=res.slice(index+1,res.length);
+						return (res=="");
+					}
+					else{
+						return false;
+					}
+				}
+			}
+			else{
+				return false;
+			}
+		}
+		
+	}
+}
+
 
 function esGaleria(){
 	var url=window.location.href;
@@ -167,7 +200,7 @@ function mostarVideo(){
 		return false;
 	}
 	else{
-		return esHomePage();
+		return esHomePage(url);
 	}
 }
 

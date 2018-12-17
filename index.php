@@ -121,7 +121,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 </div>
 
 <div id="div-redes-sociales" style="">
-	<a href="https://www.youtube.com/results?search_query=transition+festival" target="_blank" rel="noopener">
+	<a href="https://www.youtube.com/channel/UCUZ0gYELad1YgZLbI7P-0dQ" target="_blank" rel="noopener">
 		<img class="img-red-social" src="<?php echo $path_template . "images/redes_sociales/youtube.png" ?>" />
 	</a>
 	<a href="https://www.facebook.com/TransitionFestival/" target="_blank" rel="noopener">
