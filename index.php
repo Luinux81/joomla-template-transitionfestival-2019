@@ -76,7 +76,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 		</div>
 		<div id="div-top-menu-der">
 			<a id="menuitem-entradas" class="menuitem-nav-link menuitem-destacado fuenteMenu" href="./index.php?option=com_content&view=article&id=5">ENTRADAS</a>
-			<a id="menuitem-galeria" class="menuitem-nav-link fuenteMenu" href="./index.php?option=com_content&view=article&id=107" >GALERIA</a>
+			<a id="menuitem-galeria" class="menuitem-nav-link fuenteMenu" href="./index.php?option=com_content&view=article&id=188" >GALERIA</a>
 			<a id="menuitem-contacto" class="menuitem-nav-link fuenteMenu" href="./index.php?option=com_content&view=category&id=11">CONTACTO</a>
 		</div>
 	</div>
@@ -138,10 +138,10 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	</a>
 </div>
 
-<div id="div-overlay" onclick="closeVideo()">
+<div id="div-overlay" style="display:none;" onclick="closeVideo()">
 	<div id="video-contenedor">
-		<a href="javascript:void(0)" id="btnCerrarVideo" onclick="closeVideo()">x</a>
-		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/-2y2MPoDFvI?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<a href="javascript:void(0)" id="btnCerrarVideo" onclick="closeVideo()">x</a>		
+		<?php // añadir aqui el video con javascript ?>
 	</div>
 </div>
 <?php 
