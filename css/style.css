@@ -566,12 +566,41 @@ span[class^=info-cabecera-lateral]{
 	animation:alpha-animation 2s linear infinite alternate;
 }
 
+.oculto{
+	display:none !important;
+}
+
+
+
 /***************************************************/
 /*				DETALLES						   */
 /***************************************************/
 
+/*Tienda online ticketscript */
+
 #ts-shop-iframe{
   width:100% !important;
+}
+
+#posicionadorShop #ts-shop-iframe{
+  min-height:inherit !important;
+  -webkit-box-shadow: 0px 0px 28px 10px rgba(204,176,63,1);
+  -moz-box-shadow: 0px 0px 28px 10px rgba(204,176,63,1);
+  box-shadow: 0px 0px 28px 10px rgba(204,176,63,1);
+}
+
+/*****************************/
+
+
+/* Modulo Acyba */
+.captchakeymodule{
+  display:flex;
+  justify-content:center;
+}
+
+
+table.acymailing_form{
+	width:50% !important;
 }
 
 
@@ -1383,23 +1412,7 @@ span[class^=info-cabecera-lateral]{
 }
 
 
-/*Tienda online ticketscript */
 
-#posicionadorShop #ts-shop-iframe{
-  min-height:inherit !important;
-  -webkit-box-shadow: 0px 0px 28px 10px rgba(204,176,63,1);
-  -moz-box-shadow: 0px 0px 28px 10px rgba(204,176,63,1);
-  box-shadow: 0px 0px 28px 10px rgba(204,176,63,1);
-}
-
-
-
-
-
-/*****************************/
-.oculto{
-	display:none !important;
-}
 
 /****************************************************/
 /*   SECCION VIDEO                                  */
@@ -1483,15 +1496,37 @@ span[class^=info-cabecera-lateral]{
 }
 
 .galeria-item{	
+	position:relative;
 	display:flex;
 	flex-grow:1;
 	justify-content:center;	
 	height:auto;
+	max-height:200px !important; /*Cambiar con media queries*/
 	/* poner max-width con javascript segun número de columnas*/
 	margin-left:0px;
 	margin-right:0px;
 	border-radius:20% !important;
 	overflow:visible;
+}
+
+.galeria-overlayimagen{
+	position:static;
+	left:0px;
+	top:0px;
+	background-color:black;
+	width:100%;
+	float:left;
+}
+
+.galeria-imagen-precarga{
+	position:absolute;
+	object-fit:scale-down !important;
+}
+
+.galeria-imagen-precarga-fondo{
+	position:absolute;
+	object-fit:scale-down !important;
+	transform:scale(-0.70);
 }
 
 .galeria-imagen{
@@ -1502,8 +1537,8 @@ span[class^=info-cabecera-lateral]{
 	width:80%;
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
+	float:left;
 }
-
 
 .galeria-imagen:hover{
 	/*Aplicar sombra verde*/
@@ -1514,10 +1549,30 @@ span[class^=info-cabecera-lateral]{
 	
 }
 
+.galeria-lightbox-enlace{
+	display:flex;
+	justify-content:center;
+	width:100%;
+}
+
+.galeria-lightbox-hack{
+	position:fixed !important;
+	top:100px !important;
+}
+
+.galeria-limitador-altura-max{
+	max-height:200px;
+}
+
+.galeria-limitador-altura-min{
+	min-height:200px;
+}
 
 
 #div-paginacion{
-	position:static;
+	position:fixed;
+	bottom:30px;
+	
 	width:90%;
 	
 	display:flex;
@@ -1529,7 +1584,7 @@ span[class^=info-cabecera-lateral]{
 	margin-bottom:20px;
 	
 	border-radius:10px;
-	background-color:rgba(3,3,3,0.7);
+	background-color:rgba(3,3,3,0.9);
 }
 
 #div-paginacion span{
@@ -1543,8 +1598,42 @@ span[class^=info-cabecera-lateral]{
 #div-paginacion span>a:hover{	
 	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
 }
+/*
+#popup-div-overlay{
+	background-color:rgba(0,0,0,0.5);
+	
+	position:fixed;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	z-index:15;
+	
+	display:flex;	
+	justify-content:center;
+	align-items:center;
+}
 
+#popup-div-marco{
+	position:absolute;
 
+	width:80%;
+	height:80%;
+	z-index:16;
+	
+	background-color:green;
+	
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+#popup-imagen{	
+	max-height:100%;
+	height:100%;
+	z-index:17;
+}
+*/
 
 /*
 Glow Blanco

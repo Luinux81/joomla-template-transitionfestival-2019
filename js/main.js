@@ -285,48 +285,50 @@ function muestraGaleria(){
 		
 		minIndex=((paginaActual-1)*maxIndexPorPagina);
 		maxIndex=minIndex+maxIndexPorPagina;		
-		
+				
 		$.getJSON(urlBase+"/ws.php",function(data){
-			//console.log(data);
-			
+					
 			maxPagina=Math.ceil(data.length/maxIndexPorPagina);
 			
-			
+			/*Estructura*/
 			$.each(data,function(key,value){
 				if(index>=minIndex){
 					if(index%columnas==0){
 						indexFila++;					
 						$("#div-galeria").append(addFila(indexFila));					
 					}
+					
+					/*Añadimos galeria-item y galeria-imagen-* */
 					$("#div-galeria-fila-"+indexFila).append(addItem(index,urlBase,value));					
 					$("#galeria-imagen-"+index)
 						.addClass("efecto-sombra-360-blanco")
+						.addClass("galeria-limitador-altura-max")
 						.mouseenter(function(){
-							//$(this).css("margin","0px")
 							$(this)
 								.css("width","95%")
-								//.css("object-position","0% 50%")
 								;
 						})
 						.mouseleave(function(){
-							//$(this).css("margin","10px")
 							$(this)
 								.css("width","80%")
-								//.css("object-position","center")
 								;
-						});				
+						})
+						/*
+						.click(function(){
+							muestraPopUp($(this).attr("src"));
+						})
+						*/
+						;				
 				}
 				index++;
 				
 				if(index>=maxIndex){
 					return false;
 				}
-				//console.log(value);
 			});
 			
-			$(".galeria-item").addClass("forma-borde-1");
-			$(".galeria-imagen").addClass("forma-borde-1");
 			
+			/*Paginación*/
 			$("#div-galeria").append("<div id='div-paginacion' class='fuenteMenu' ></div>");
 			
 			for(var i=1;i<=maxPagina;i++){
@@ -337,40 +339,97 @@ function muestraGaleria(){
 					$("#div-paginacion").append("<span><a href='./?option=com_content&view=article&id=188&pagina="+i+"' "+actual+">"+i+"</a></span>");
 			}
 			
-			$("#div-contenido").removeClass("anchoArticulo");
+			/*PopUp*/
+			/*
+			$("#div-galeria").append("<div id='popup-div-overlay'></div>");
+			$("#popup-div-overlay")
+				.hide()
+				.click(function(){
+					ocultaPopUp();
+				})
+				.append("<div id='popup-div-marco'></div>")
+			;
+			$("#popup-div-marco").append("<img id='popup-imagen'/>");
+			*/
 			
-			$(".galeria-item")
-				.css("width",anchoColumna+"%")
-				.css("max-height","200px")
-				;
+			/*Maquetación*/
+			$("#div-contenido").removeClass("anchoArticulo");
+			$(".galeria-item").css("width",anchoColumna+"%");
+			
+			/*Decoracion imagenes*/
+			$(".galeria-item").addClass("forma-borde-1");
+			$(".galeria-imagen").addClass("forma-borde-1");	
+
+			
+			$(".lightbox").addClass("galeria-lightbox-hack");	
 		});
-		
 	}
 }
 
 function addFila(index){
-	var res="<div id='div-galeria-fila-"+index+"' class='galeria-fila'></div>";
+	var res="<div id='div-galeria-fila-"+index+"' class='galeria-fila '></div>";
 	
 	return res;
 }
 
 function addItem(index,urlBase,value){
-	var item="<div class='galeria-item'>";
-	item=item+getImagen(index,urlBase+"/"+value);
-	item=item+"</div>";
+	var item="	<div class='galeria-item galeria-limitador-altura-min'>";
+	//item+=			"<div class='galeria-div-imagen'>";
+	item+=				getImagen(index,urlBase+"/"+value);
+	//item+=			"</div>";
+	//item+="			<div class='galeria-overlayimagen'>a</div>";
+	item+="		</div>";
 	
 	return item;
 }
 
 function getImagen(index,url){
-	/*
-	$.get(url,function(data){
-		$("#galeria-imagen-"+index).attr("src",url);
-		$("#galeria-imagen-"+index).attr("alt","Transition Festival Open Air Psychedelic Music and Dance Experience "+index);
-		$("#galeria-imagen-"+index).addClass("efecto-sombra-360");
-	});
-	*/
-	return "<img id='galeria-imagen-"+index+"' class='galeria-imagen' src='"+url+"' alt='Transition Festival Open Air Psychedelic Music and Dance Experience "+index+"'/></div>"	
+
+	preLoadImagen(index,url);	
+	var out="<a href='"+url+"' class='galeria-lightbox-enlace' data-lightbox='galeria-festival' >";
+	out+=	"";
+	out+=	"<img id='galeria-imagen-"+index+"' ";
+	out+=	"class='galeria-imagen galeria-imagen-precarga galeria-limitador-altura-min' src='"+getURLBase()+"templates/transitionfestival2019/images/loading-1.gif' ";
+	out+=	"/></a>";
+
+
+	out+="<img  id='galeria-imagen-loader-fondo-"+index+"' class='galeria-imagen-precarga-fondo  galeria-limitador-altura-max' src='"+getURLBase()+"templates/transitionfestival2019/images/logo-mini-verde.png'  />";
+	
+	return out;
+		
+}
+
+function preLoadImagen(index,url){
+	var descargaImagen= new Image();
+	
+	descargaImagen.onload=function(){
+		
+		$("#galeria-imagen-"+index)
+			.delay(1000)
+			.attr("src",url)
+			.attr("alt","Transition Festival Open Air Psychedelic Music and Dance Experience "+index)
+			.removeClass("galeria-imagen-precarga");
+			
+		$("#galeria-imagen-loader-fondo-"+index).fadeOut(1000);
+	};
+	
+	descargaImagen.src=url;
+}
+
+function muestraPopUp(url){
+	$("#popup-imagen").attr("src",url).show();
+	$("#popup-div-overlay").fadeIn(1000);
+	document.getElementById("div-redes-sociales").focus(); 
+}
+
+function ocultaPopUp(){
+	$("#popup-imagen").fadeOut(500);
+	
+	window.setTimeout(function(){
+		$("#popup-imagen").attr("src","#");
+	},	500);
+	
+	$("#popup-div-overlay").fadeOut(1000);
 }
 
 function getURLBase(){
@@ -388,3 +447,4 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+

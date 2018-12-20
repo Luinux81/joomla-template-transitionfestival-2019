@@ -6,6 +6,7 @@ $doc = JFactory::getDocument();
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/bootstrap.min.css');
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/bootstrap-responsive.css');
 $doc->addStyleSheet('templates/' . $this->template . '/css/style.css');
+$doc->addStyleSheet('templates/' . $this->template . '/css/lightbox.css');
 $doc->addScript('templates/' . $this->template . '/js/main.js', 'text/javascript');
 
 $app = JFactory::getApplication();
@@ -167,6 +168,14 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	
 <?php	} ?>
 
+
+<script src="<?php echo $path_template . "js/lightbox.js"; ?>"></script> 
+<script>
+	lightbox.option({
+		'disableScrolling': true,
+		'alwaysShowNavOnTouchDevices': true	
+	})
+</script>
 </body>
 
 </html>
