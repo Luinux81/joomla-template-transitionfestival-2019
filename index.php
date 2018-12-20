@@ -134,7 +134,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	<a href="https://twitter.com/transition_crew" target="_blank" rel="noopener">
 		<img class="img-red-social" src="<?php echo $path_template . "images/redes_sociales/twitter.png" ?>" />
 	</a>
-	<a href="<?php //./index.php?option=com_content&view=article&id=119 ?>#" target="_parent">
+	<a href="./index.php?option=com_content&view=article&id=119" target="_parent">
 		<img class="img-red-social" src="<?php echo $path_template . "images/redes_sociales/email.png" ?>" />
 	</a>
 </div>
