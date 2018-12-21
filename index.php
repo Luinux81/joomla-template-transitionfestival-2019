@@ -27,8 +27,8 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 <head>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
     <jdoc:include type="head" />
-    <?php //<meta name="viewport" content="width=device-width, initial-scale=1.0"> ?>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" > 
+	<?php //<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">  ?>
   	
     <meta property="og:image" content="http://www.transitionfestival.org/images/2019/transition_logo_multi.jpg"/>
     <meta property="og:title" content="Transition Festival"/>
