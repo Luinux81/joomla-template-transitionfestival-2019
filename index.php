@@ -54,7 +54,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	<a id="menuitem-mob-guia" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=9">GUIA</a>
 	<a id="menuitem-mob-lugar" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=10">LUGAR</a>
 	<a id="menuitem-mob-entradas" class="fuenteMenu menuitem-destacado" href="./index.php?option=com_content&view=article&id=5">ENTRADAS</a>
-	<a id="menuitem-mob-galeria" class="fuenteMenu" href="./index.php?option=com_content&view=article&id=107" >GALERIA</a>
+	<a id="menuitem-mob-galeria" class="fuenteMenu" href="./index.php?option=com_content&view=article&id=188" >GALERIA</a>
 	<a id="menuitem-mob-contacto" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=11">CONTACTO</a>
 </div>
 
@@ -172,7 +172,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 <script src="<?php echo $path_template . "js/lightbox.js"; ?>"></script> 
 <script>
 	lightbox.option({
-		'disableScrolling': true,
+		<?php //'disableScrolling': true, ?>
 		'alwaysShowNavOnTouchDevices': true	
 	})
 </script>

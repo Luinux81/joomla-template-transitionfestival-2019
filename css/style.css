@@ -1409,20 +1409,12 @@ table.acymailing_form{
 }
 
 #div-galeria{
-	position:static;
+	position:relative;
 	display:flex;
 	justify-content:center;
 	align-items:center;	
 	flex-wrap:wrap;
-}
-
-.galeria-fila{
-	position:static;
-	width:100%;
-	display:flex;
-	justify-content:strech;
-	margin-top:10px;
-	margin-bottom:10px;
+	flex-direction:row;
 }
 
 .galeria-item{	
@@ -1431,12 +1423,17 @@ table.acymailing_form{
 	flex-grow:1;
 	justify-content:center;	
 	height:auto;
-	max-height:200px !important; /*Cambiar con media queries*/
+	/*max-height:200px !important; *//*Cambiar con media queries*/
 	/* poner max-width con javascript segun número de columnas*/
 	margin-left:0px;
 	margin-right:0px;
+	margin-top:10px;
+	margin-bottom:10px;	
+	
 	border-radius:20% !important;
 	overflow:visible;
+	
+	min-width:250px;
 }
 
 .galeria-overlayimagen{
@@ -1468,6 +1465,8 @@ table.acymailing_form{
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
 	float:left;
+	
+	
 }
 
 .galeria-imagen:hover{
@@ -1487,15 +1486,15 @@ table.acymailing_form{
 
 .galeria-lightbox-hack{
 	position:fixed !important;
-	top:100px !important;
+	top:2% !important;
 }
 
 .galeria-limitador-altura-max{
-	max-height:200px;
+	/*max-height:200px;*/
 }
 
 .galeria-limitador-altura-min{
-	min-height:200px;
+	/*min-height:200px;*/
 }
 
 

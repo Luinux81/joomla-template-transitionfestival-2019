@@ -255,6 +255,7 @@ function muestraGaleria(){
 	var maxFilasPorPagina=10;
 	
 	var anchoColumna=100/columnas;
+	var altoFila;
 	
 	var maxIndexPorPagina=columnas*maxFilasPorPagina;
 	var maxPagina;
@@ -284,18 +285,15 @@ function muestraGaleria(){
 			maxPagina=Math.ceil(data.length/maxIndexPorPagina);
 			
 			/*Estructura*/
+			
+			$("[itemprop=articleBody]").css("padding-bottom","40px");
+			
 			$.each(data,function(key,value){
 				if(index>=minIndex){					
 					var posicionEnFila=index%columnas;
+										
+					$("#div-galeria").append(addItem(index,urlBase,value));
 					
-
-					if(posicionEnFila==0){
-						indexFila++;					
-						$("#div-galeria").append(addFila(indexFila));					
-					}
-					
-					/*Añadimos galeria-item y galeria-imagen-* */
-					$("#div-galeria-fila-"+indexFila).append(addItem(index,urlBase,value));					
 					$("#galeria-imagen-"+index)
 						.addClass("efecto-sombra-360-blanco")
 						.addClass("galeria-limitador-altura-max")
@@ -352,13 +350,19 @@ function muestraGaleria(){
 			$("#div-contenido").removeClass("anchoArticulo");
 			$(".galeria-item").css("width",anchoColumna+"%");
 			
-			/*Decoracion imagenes*/
-			/*
-			$(".galeria-item").addClass("forma-borde-i");
-			$(".galeria-imagen").addClass("forma-borde-i");	
-			*/
+			var anchoCalculado = $(".galeria-item").width();
+			var alturaMaxima=(1/2)*anchoCalculado;
+			$(".galeria-limitador-altura-max").css("height",alturaMaxima).css("max-height",alturaMaxima);
 			
-			$(".lightbox").addClass("galeria-lightbox-hack");	
+			$(window).on("resize",function(){
+				var anchoCalculado = $(".galeria-item").width();
+				var alturaMaxima=(1/2)*anchoCalculado;
+				$(".galeria-limitador-altura-max").css("height",alturaMaxima).css("max-height",alturaMaxima);
+				
+			});
+			
+			
+			$(".lightbox").addClass("galeria-lightbox-hack");			
 		});
 	}
 }
@@ -370,7 +374,7 @@ function addFila(index){
 }
 
 function addItem(index,urlBase,value){
-	var item="	<div class='galeria-item galeria-limitador-altura-min'>";
+	var item="	<div class='galeria-item galeria-limitador-altura-min galeria-limitador-altura-max'>";
 	//item+=			"<div class='galeria-div-imagen'>";
 	item+=				getImagen(index,urlBase+"/"+value);
 	//item+=			"</div>";
@@ -386,7 +390,7 @@ function getImagen(index,url){
 	var out="<a href='"+url+"' class='galeria-lightbox-enlace' data-lightbox='galeria-festival' >";
 	out+=	"";
 	out+=	"<img id='galeria-imagen-"+index+"' ";
-	out+=	"class='galeria-imagen galeria-imagen-precarga galeria-limitador-altura-min' src='"+getURLBase()+"templates/transitionfestival2019/images/loading-1.gif' ";
+	out+=	"class='galeria-imagen galeria-imagen-precarga galeria-limitador-altura-min' src='"+getURLBase()+"templates/transitionfestival2019/images/loading-2.gif' ";
 	out+=	"/></a>";
 
 
@@ -413,6 +417,7 @@ function preLoadImagen(index,url){
 	descargaImagen.src=url;
 }
 
+/*
 function muestraPopUp(url){
 	$("#popup-imagen").attr("src",url).show();
 	$("#popup-div-overlay").fadeIn(1000);
@@ -428,6 +433,7 @@ function ocultaPopUp(){
 	
 	$("#popup-div-overlay").fadeOut(1000);
 }
+*/
 
 function getURLBase(){
 	var urlBase=window.location.href;	
