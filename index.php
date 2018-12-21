@@ -56,6 +56,9 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	<a id="menuitem-mob-entradas" class="fuenteMenu menuitem-destacado" href="./index.php?option=com_content&view=article&id=5">ENTRADAS</a>
 	<a id="menuitem-mob-galeria" class="fuenteMenu" href="./index.php?option=com_content&view=article&id=188" >GALERIA</a>
 	<a id="menuitem-mob-contacto" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=11">CONTACTO</a>
+	<div id="menuitem-mob-div-idioma">
+		<jdoc:include type="modules" name="position-0" style="html5" />
+	</div>
 </div>
 
 <div id="contenedorTop" class="">

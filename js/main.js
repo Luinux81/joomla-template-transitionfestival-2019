@@ -6,9 +6,9 @@ jQuery(document).ready(function(){
 	//jQuery("#contenedorTop").hide().fadeIn(1000);
 	
 	if(!mostarVideo()){
-		$("#div-overlay").hide();
-		$("body").css("overflow-y","scroll");
+		$("#div-overlay").hide();		
 		$("#video-contenedor > iframe").remove();
+		$("body").css("overflow-y","visible");
 	}
 	else{
 		$("#video-contenedor").append("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/-2y2MPoDFvI?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
@@ -287,12 +287,15 @@ function muestraGaleria(){
 			/*Estructura*/
 			
 			$("[itemprop=articleBody]").css("padding-bottom","40px");
+			$(".item-page").css("background-color","rgba(0,0,0,0.6)");
+			$("#contenedorTop").addClass("efecto-fondo-transparente");
 			
 			$.each(data,function(key,value){
 				if(index>=minIndex){					
 					var posicionEnFila=index%columnas;
 										
-					$("#div-galeria").append(addItem(index,urlBase,value));
+					/*$("#div-galeria").append(addItem(index,urlBase,value));*/
+					addItem(index,urlBase,value);
 					
 					$("#galeria-imagen-"+index)
 						.addClass("efecto-sombra-360-blanco")
@@ -335,14 +338,14 @@ function muestraGaleria(){
 			
 			
 			/*Paginación*/
-			$("#div-galeria").append("<div id='div-paginacion' class='fuenteMenu' ></div>");
+			$("#div-galeria").append("<div id='galeria-div-paginacion' class='fuenteMenu' ></div>");
 			
 			for(var i=1;i<=maxPagina;i++){
 				var actual="";
 				if(i==paginaActual){
 					actual=" class='menuitem-actual' ";
 				}
-					$("#div-paginacion").append("<span><a href='./?option=com_content&view=article&id=188&pagina="+i+"' "+actual+">"+i+"</a></span>");
+					$("#galeria-div-paginacion").append("<a href='./?option=com_content&view=article&id=188&pagina="+i+"' "+actual+">"+i+"</a>");
 			}
 			
 			
@@ -362,7 +365,9 @@ function muestraGaleria(){
 			});
 			
 			
-			$(".lightbox").addClass("galeria-lightbox-hack");			
+			$(".lightbox").addClass("galeria-lightbox-hack");
+
+			$("#contenedorMid").addClass("posicionamiento-top");
 		});
 	}
 }
@@ -374,6 +379,26 @@ function addFila(index){
 }
 
 function addItem(index,urlBase,value){
+	$("#div-galeria").append("<div id='galeria-item-"+index+"'></div>");
+	
+	$("#galeria-item-"+index)
+		.addClass("galeria-item")
+		.addClass("galeria-limitador-altura-min")
+		.addClass("galeria-limitador-altura-max")
+		.append("<a id='galeria-enlace-"+ index +"' href='"+ window.location.href +"'></a>" )
+	;
+	
+	$("#galeria-enlace-"+index)
+		.on("click", function(evt){
+			//evt.stopPropagation();
+			return false;
+		})
+		
+	;
+	
+	getImagen(index,urlBase+"/"+value);
+	
+	/*
 	var item="	<div class='galeria-item galeria-limitador-altura-min galeria-limitador-altura-max'>";
 	//item+=			"<div class='galeria-div-imagen'>";
 	item+=				getImagen(index,urlBase+"/"+value);
@@ -382,12 +407,34 @@ function addItem(index,urlBase,value){
 	item+="		</div>";
 	
 	return item;
+	*/
 }
 
 function getImagen(index,url){
 
 	preLoadImagen(index,url);	
-	var out="<a href='"+url+"' class='galeria-lightbox-enlace' data-lightbox='galeria-festival' >";
+	
+	$("#galeria-enlace-"+index)
+		.append("<img id='galeria-imagen-"+index+"' />")
+		.append("<img  id='galeria-imagen-loader-fondo-"+index+"' />")
+		.addClass("galeria-lightbox-enlace")
+	;
+	
+	$("#galeria-imagen-"+index)
+		.addClass("galeria-imagen")
+		.addClass("galeria-imagen-precarga")
+		.addClass("galeria-limitador-altura-min")
+		.attr("src",getURLBase()+"templates/transitionfestival2019/images/loading-2.gif")
+	;
+	
+	$("#galeria-imagen-loader-fondo-"+index)
+		.addClass("galeria-imagen-precarga-fondo")
+		.addClass("galeria-limitador-altura-max")
+		.attr("src",getURLBase()+"templates/transitionfestival2019/images/logo-mini-verde.png")
+	;
+	
+	/*
+	var out="<a href='#' class='galeria-lightbox-enlace' >";
 	out+=	"";
 	out+=	"<img id='galeria-imagen-"+index+"' ";
 	out+=	"class='galeria-imagen galeria-imagen-precarga galeria-limitador-altura-min' src='"+getURLBase()+"templates/transitionfestival2019/images/loading-2.gif' ";
@@ -397,7 +444,7 @@ function getImagen(index,url){
 	out+="<img  id='galeria-imagen-loader-fondo-"+index+"' class='galeria-imagen-precarga-fondo  galeria-limitador-altura-max' src='"+getURLBase()+"templates/transitionfestival2019/images/logo-mini-verde.png'  />";
 	
 	return out;
-		
+	*/
 }
 
 function preLoadImagen(index,url){
@@ -408,10 +455,22 @@ function preLoadImagen(index,url){
 		$("#galeria-imagen-"+index)
 			.delay(1000)
 			.attr("src",url)
-			.attr("alt","Transition Festival Open Air Psychedelic Music and Dance Experience "+index)
-			.removeClass("galeria-imagen-precarga");
-			
-		$("#galeria-imagen-loader-fondo-"+index).fadeOut(1000);
+			.attr("alt","Transition Festival Open Air Psychedelic Music and Dance Experience "+index)			
+			.removeClass("galeria-imagen-precarga")
+		;
+		
+		$("#galeria-enlace-"+index)
+			.attr("href",url)
+			.attr("data-lightbox","galeria-festival")
+		;
+		
+		$("#galeria-enlace-"+index)
+			.unbind("click")
+		;
+		
+		$("#galeria-imagen-loader-fondo-"+index)
+			.fadeOut(1000)
+		;
 	};
 	
 	descargaImagen.src=url;
