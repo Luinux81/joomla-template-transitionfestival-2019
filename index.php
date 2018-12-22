@@ -2,12 +2,21 @@
 
 defined('_JEXEC') or die;
 
+
+
 $doc = JFactory::getDocument();
+
+/* public function addStyleSheet(string $url, array $options = array(), array $attribs = array()) */
+
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/bootstrap.min.css');
 $doc->addStyleSheet($this->baseurl . '/media/jui/css/bootstrap-responsive.css');
+
 $doc->addStyleSheet('templates/' . $this->template . '/css/style.css');
 $doc->addStyleSheet('templates/' . $this->template . '/css/lightbox.css');
+
+/* public function addScript($url, $type = "text/javascript", $defer = false, $async = false) */
 $doc->addScript('templates/' . $this->template . '/js/main.js', 'text/javascript');
+
 
 $app = JFactory::getApplication();
 $menu = $app->getMenu();
@@ -25,7 +34,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" ></script>
     <jdoc:include type="head" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" > 
 	<?php //<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">  ?>
@@ -152,7 +161,8 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	}
 	else{
 ?>		
-
+<?php 
+	/*
 	<div id="div_imagen_previa">
 		<img src="./images/2018/FONDO2019-compressor.jpg" id="imagen_previa_web" style="width:100%;display:none;">
 	</div>
@@ -168,7 +178,8 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
   			
   		</div>  		
   	</div>
-	
+	*/
+?>	
 <?php	} ?>
 
 

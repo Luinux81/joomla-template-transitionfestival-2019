@@ -55,8 +55,8 @@ jQuery(document).ready(function(){
 		jQuery(".item-page").parent().addClass("anchoArticulo");
 	}
 	else{
-		jQuery(".item-page").parent().css("width","85% !important");
-		jQuery(".imagegalleryplg img").addClass("imagegallery-sin-marco");
+		$(".item-page").parent().css("width","85% !important");
+		$("#div-redes-sociales").addClass("invisibleEnGaleria");
 	}
 	
 	var lang=$(".lang-active a").attr("href");
@@ -144,7 +144,7 @@ function esHomePage(url){
 function esGaleria(){
 	var url=window.location.href;
 	
-	return (url.indexOf("option=com_fwgallerylight")>-1);
+	return (url.indexOf("?option=com_content&view=article&id=188")>-1);
 }
 
 function resaltaItemMenuActual(){

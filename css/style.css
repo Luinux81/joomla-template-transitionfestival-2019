@@ -545,6 +545,10 @@ span[class^=info-cabecera-lateral]{
 	margin:5px 15px !important;
 }
 
+.invisibleEnGaleria{
+	visibility:visible;
+}
+
 /********************************************************/
 /*	Clases para asignar con javascript                  */
 /********************************************************/
@@ -790,6 +794,7 @@ table.acymailing_form{
 		position:fixed;
 		right:0px;
 		height:50px;
+		display:none;
 	}
 	
 	
@@ -886,6 +891,7 @@ table.acymailing_form{
 		position:fixed;
 		right:0px;
 		height:50px;
+		display:none;
 	}
 	
 	
@@ -945,9 +951,13 @@ table.acymailing_form{
 	
 	#div-redes-sociales{
 		height:40px !important;
-		visibility:hidden !important;
+		/*visibility:hidden !important;*/
 	}
 	
+	.invisibleEnGaleria{
+		visibility:hidden;
+	}
+
 	#div-redes-sociales img{
 		height:30px !important;
 		width:30px !important;
@@ -1011,10 +1021,7 @@ table.acymailing_form{
 		box-shadow:none !important;
 	}
 	
-	/* Idiomas */
-	#div-top-idioma{
-		display:none;
-	}
+
 	
 	.lang-block{
 		display:flex;
@@ -1070,7 +1077,7 @@ table.acymailing_form{
 	
 	#div-redes-sociales{
 		height:40px !important;
-		visibility:hidden !important;
+		/*visibility:hidden !important;*/
 	}
 	
 	#div-redes-sociales img{
@@ -1079,6 +1086,9 @@ table.acymailing_form{
 		margin:5px 5px;
 	}
 	
+	.invisibleEnGaleria{
+		visibility:hidden !important;
+	}
 	
 }
 
@@ -1162,9 +1172,12 @@ table.acymailing_form{
 	
 	#div-redes-sociales{
 		height:40px !important;
-		visibility:hidden !important;
+		/*visibility:hidden !important;*/
 	}
 	
+	.invisibleEnGaleria{
+		visibility:hidden !important;
+	}
 	#div-redes-sociales img{
 		height:30px !important;
 		width:30px !important;
@@ -1197,6 +1210,124 @@ table.acymailing_form{
 	}
 }
 	
+@media (max-width:900px) and (orientation:landscape){
+	
+	
+	/* Maquetación */
+	body{
+		min-height:500px;
+		overflow-y:visible !important;
+	}
+	
+	.posicionamiento-top{	
+		position:absolute;	
+		top:5px !important;
+	}
+	
+	/* Menu superior */
+	
+	.efecto-fondo-transparente{
+		background-image:none !important;
+		background-color:rgba(0,0,0,0) !important;	
+		box-shadow:none !important;
+	}
+	
+	#div-menu-mobile{
+		display:flex !important;
+		flex-direction:column;
+		
+	}
+	#div-menu-mobile-icon{
+		float:left;
+		display:block;
+	}
+
+	#div-menu-mobile-icon img{
+		height:50px;
+	}
+	
+	#div-top-news{
+		display:none;
+	}
+	
+	#div-top-menu{
+		display:none;
+	}
+	
+	/* Idiomas */
+	#div-top-idioma{
+		display:none;
+	}
+	
+	.lang-block{
+		display:flex;
+		justify-content:space-evenly;
+		align-items:center;
+		padding-top:10px !important;
+	}
+	
+	.lang-block>li>a{
+		padding:0px;
+	}
+	
+	.lang-block>li>a>img{		
+		transform:scale(2);
+		
+		border-radius:2px;
+	}
+
+	/* Boton back */
+	#div-back{
+		position:fixed;
+		top:0px;
+		left:unset;
+		right:0px;
+		
+		margin:5px;
+		
+		width:50px;
+		height:50px;
+	}
+	
+	/* Galeria */
+		#galeria-div-paginacion{
+		bottom:0px;
+		width:100%;		
+		z-index:2;		
+		margin-top:0px;
+		margin-bottom:0px;
+		
+		min-height:40px;
+		
+		background-color:rgba(0,0,0,0.9);
+		background-size:cover;
+		opacity:0.9;
+		
+		border-top-left-radius:20%;
+		border-top-right-radius:20%;
+		border-bottom-left-radius:0px;
+		border-top-right-radius:0px;
+		
+	}
+	
+	
+	#div-redes-sociales{
+		height:40px !important;
+		/*visibility:hidden !important;*/
+	}
+	
+	.invisibleEnGaleria{
+		visibility:hidden !important;
+	}
+	
+	#div-redes-sociales img{
+		height:30px !important;
+		width:30px !important;
+		margin:5px 5px;
+	}
+	
+	
+}
 
 @media screen and (min-width:900px) and (max-width:1024px){
 	/* tablet, landscape iPad, lo-res laptops ands desktops */ 
