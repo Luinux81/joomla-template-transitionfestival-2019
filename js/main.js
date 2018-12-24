@@ -188,11 +188,11 @@ function diasRestantes(){
 
 
 function openNav() {
-    document.getElementById("div-menu-mobile").style.width = "250px";
+    document.getElementById("menu-mobile-div-expand").style.width = "250px";
 }
 
 function closeNav() {
-    document.getElementById("div-menu-mobile").style.width = "0";
+    document.getElementById("menu-mobile-div-expand").style.width = "0";
 }
 
 function mostarVideo(){
@@ -289,6 +289,13 @@ function muestraGaleria(){
 			$("[itemprop=articleBody]").css("padding-bottom","40px");
 			$(".item-page").css("background-color","rgba(0,0,0,0.6)");
 			$("#contenedorTop").addClass("efecto-fondo-transparente");
+			
+			$(".menu-mobile-imagen-lateral")
+				.css("background-color","rgba(0,0,0,0.8)")
+				.css("border-radius","50px");
+			
+			$("#menu-mobile-logo").css("visibility","hidden");
+			$("#menu-mobile-div-info").css("visibility","hidden");
 			
 			$.each(data,function(key,value){
 				if(index>=minIndex){					

@@ -83,12 +83,12 @@ body{
 	visibility:hidden;
 }
 
-#div-menu-mobile-icon{
+#menu-mobile-div{
 	float:left;
 	display:none;
 }
 
-#div-menu-mobile-icon img{
+#menu-mobile-div img{
 	height:100px;
 }
 
@@ -180,7 +180,12 @@ div[id^="div-top-"]{
     margin-left: 50px;
 }
 
-
+.menu-mobile-imagen-lateral{
+	/*
+	background-color:rgba(0,0,0,0.8);
+	border-radius:50px;
+	*/
+}
 
 /****************************************************/
 /*                     IDIOMAS                      */
@@ -746,9 +751,11 @@ table.acymailing_form{
 
 
 
-/***************************************************/
-/*				MEDIA QUERIES					   */
-/***************************************************/
+												/****************************************************/
+												/****************************************************/
+												/*                   MEDIA QUERIES                  */
+												/****************************************************/
+												/****************************************************/
 
 @media screen and (max-height: 450px) {
 	.sidenav {padding-top: 0px;}
@@ -765,38 +772,62 @@ table.acymailing_form{
 
 @media (max-width:480px)  { 
 /* smartphones, iPhone, portrait 480x320 phones */ 
+	
+	/*fondo*/
 	body{
 		padding:0;
+		background-image:url("../images/fondo-artwork-1.jpg") !important;
 	}
-		
-	#contenedorTop{
-		height:50px;
+	/*Fondo rotatorio*/
+	#div-imagen-rotatoria{
+		display:none;
 	}
 	
-	#div-menu-mobile-icon{
+	/*Menu superior*/	
+	#contenedorTop{
+		height:auto;		
+		background-color:rgba(0,0,0,0.8);
+		background-image:none;
+		box-shadow:none;
+		
+		display:flex;
+		justify-content:center;
+		
+		overflow:visible;
+		
+		border-bottom-left-radius:20%;
+		border-bottom-right-radius:20%;
+	}
+	
+	#menu-mobile-div{
 		float:left;
-		display:block;
+		display:flex;
+		justify-content:center;
+		flex-direction:column;
 	}
 
-	#div-menu-mobile-icon img{
-		height:50px;
+	#menu-mobile-div img{
+		height:60px;
+		top:0px;
 	}
 	
-	#div-top-news{
-		display:none;
+	#menu-mobile-icon-i{
+		position:absolute;
+		left:0;
 	}
 	
-	#div-top-menu{
-		display:none;
+	#menu-mobile-icon-d{
+		position:absolute;
+		right:0;
 	}
 	
-	#div-top-idioma{
-		position:fixed;
-		right:0px;
-		height:50px;
-		display:none;
+	#menu-mobile-div-info{
+		margin-top:-10px;
 	}
 	
+	.menu-normal{
+		display:none !important;
+	}
 	
 	.fuenteMenu{
 		font-size:15px;
@@ -807,7 +838,7 @@ table.acymailing_form{
 	}	
 
 	#div-back{
-		position:fixed;
+		position:absolute;
 		top:50px;
 		left:0px;
 		width:30px;
@@ -817,9 +848,17 @@ table.acymailing_form{
 	}
 	
 	#contenedorMid{
-		top:50px;
+		top:65px;
 	}
 	
+	/*Quitar banner*/
+	#div-cabecera-home{
+		display:none !important;
+	}
+	
+	#div-contenido.anchoArticulo{
+		width:95% !important;
+	}
 	
 	.div-cabecera{
 		min-height:75px;
@@ -870,12 +909,12 @@ table.acymailing_form{
 		height:50px;
 	}
 	
-	#div-menu-mobile-icon{
+	#menu-mobile-div{
 		float:left;
 		display:block;
 	}
 
-	#div-menu-mobile-icon img{
+	#menu-mobile-div img{
 		height:50px;
 	}
 	
@@ -951,7 +990,6 @@ table.acymailing_form{
 	
 	#div-redes-sociales{
 		height:40px !important;
-		/*visibility:hidden !important;*/
 	}
 	
 	.invisibleEnGaleria{
@@ -974,7 +1012,6 @@ table.acymailing_form{
 		min-height:40px;
 		
 		background-color:rgba(0,0,0,0.9);		
-		/*background-image:url("../images/fondo_m2.jpg");*/
 		background-size:cover;
 		opacity:0.9;
 		
@@ -1015,6 +1052,7 @@ table.acymailing_form{
 		*/
 	}
 	
+	/* */
 	.efecto-fondo-transparente{
 		background-image:none !important;
 		background-color:rgba(0,0,0,0) !important;	
@@ -1232,17 +1270,18 @@ table.acymailing_form{
 		box-shadow:none !important;
 	}
 	
-	#div-menu-mobile{
+	#menu-mobile-div-expand{
 		display:flex !important;
 		flex-direction:column;
 		
 	}
-	#div-menu-mobile-icon{
+	#menu-mobile-div{
 		float:left;
-		display:block;
+		display:flex;
+		justify-content:center;
 	}
 
-	#div-menu-mobile-icon img{
+	#menu-mobile-div img{
 		height:50px;
 	}
 	
@@ -1339,7 +1378,7 @@ table.acymailing_form{
 		height:75px;
 	}
 	
-	#div-menu-mobile{
+	#menu-mobile-div-expand{
 		display:none;
 	}
 	
@@ -1438,7 +1477,7 @@ table.acymailing_form{
 		height:100px;
 	}
 	
-	#div-menu-mobile{
+	#menu-mobile-div-expand{
 		display:none;
 	}
 	
@@ -1538,7 +1577,7 @@ table.acymailing_form{
 		height:130px;
 	}
 	
-	#div-menu-mobile{
+	#menu-mobile-div-expand{
 		display:none;
 	}
 	

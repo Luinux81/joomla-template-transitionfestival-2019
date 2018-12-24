@@ -55,7 +55,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	<img src="<?php echo $path_template . "images/fondo_rot.png" ?>" id="imagen-rotatoria">
 </div>
 
-<div id="div-menu-mobile" class="sidenav ">
+<div id="menu-mobile-div-expand" class="sidenav menu-mobile">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	<a href="./index.php"><img id="logo-central-mobile" src="<?php echo $path_template . "images/logo_central.png" ?>"/></a>
 	<a class="fuenteMenu" href="./index.php?video=0">HOME</a>
@@ -71,14 +71,20 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 </div>
 
 <div id="contenedorTop" class="">
-	<div id="div-menu-mobile-icon">
-		<img id="menu-mobile-icon" src="<?php echo $path_template . "images/menu_icon.png" ?>" onclick="openNav()"/>
+	<div id="menu-mobile-div" class="menu-mobile" >
+		<img id="menu-mobile-icon-i" class="menu-mobile-imagen-lateral" src="<?php echo $path_template . "images/logo-gold.png" ?>" onclick="openNav()"/>
+		<img id="menu-mobile-logo" src="<?php echo $path_template . "images/logo_central.png" ?>" onclick="openNav()"/>
+		<img id="menu-mobile-icon-d" class="menu-mobile-imagen-lateral" src="<?php echo $path_template . "images/logo-gold.png" ?>" onclick="openNav()"/>
+		<div id="menu-mobile-div-info">
+		<span>14-21 MAY 2019</span>
+		<span>DOÑANA, SPAIN</span>
+		</div>
 	</div>
 	
-	<div id="div-top-news">
+	<div id="div-top-news" class="menu-normal">
 		<a href="./index.php?video=0" >	<img src="<?php echo $path_template . "images/news.png" ?>" /> </a>
 	</div>
-	<div id="div-top-menu">
+	<div id="div-top-menu" class="menu-normal">
 		<div id="div-top-menu-izq">
 			<a id="menuitem-festival" class="menuitem-nav-link fuenteMenu" href="./index.php?option=com_content&view=category&id=8">FESTIVAL</a>
 			<a id="menuitem-guia" class="menuitem-nav-link fuenteMenu" href="./index.php?option=com_content&view=category&id=9">GUIA</a>
@@ -93,7 +99,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 			<a id="menuitem-contacto" class="menuitem-nav-link fuenteMenu" href="./index.php?option=com_content&view=category&id=11">CONTACTO</a>
 		</div>
 	</div>
-	<div id="div-top-idioma">
+	<div id="div-top-idioma" class="menu-normal">
 		<jdoc:include type="modules" name="position-0" style="html5" />
 	</div>
 	<div id="div-back">			
