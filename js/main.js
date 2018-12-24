@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 	if(!mostarVideo()){
 		$("#div-overlay").hide();		
 		$("#video-contenedor > iframe").remove();
-		//$("body").css("overflow-y","visible");
+		$("body").css("overflow-y","visible");
 	}
 	else{
         //$("body").css("overflow-y","hidden");		
