@@ -8,11 +8,15 @@ jQuery(document).ready(function(){
 	if(!mostarVideo()){
 		$("#div-overlay").hide();		
 		$("#video-contenedor > iframe").remove();
-		$("body").css("overflow-y","visible");
+		//$("body").css("overflow-y","visible");
 	}
 	else{
+        //$("body").css("overflow-y","hidden");		
 		$("#video-contenedor").append("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/-2y2MPoDFvI?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
-		$("#div-overlay").fadeIn(1000);
+		$("#div-overlay")
+			//.css("overflow","hidden")
+			.fadeIn(1000);
+		
 	}
 	
 	$("#contenedorTop a, .item a").click(function(){

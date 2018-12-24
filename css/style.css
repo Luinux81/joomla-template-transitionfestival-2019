@@ -521,6 +521,12 @@ span[class^=info-cabecera-lateral]{
 }
 
 
+												/****************************************************/
+												/****************************************************/
+												/*                 SECCION FOOTER                   */
+												/****************************************************/
+												/****************************************************/
+												
 /*********************************************/
 /*	SECCION REDES SOCIALES                   */
 /*********************************************/
@@ -617,10 +623,12 @@ table.acymailing_form{
 }
 
 
+												/****************************************************/
+												/****************************************************/
+												/*                 SECCION GALERIA                  */
+												/****************************************************/
+												/****************************************************/
 
-/****************************************************/
-/*   SECCION GALERIA                                */
-/****************************************************/
 
 #div-contenido.anchoArticulo{
 	width:80% !important;
@@ -776,53 +784,6 @@ table.acymailing_form{
 	/*fondo*/
 	body{
 		padding:0;
-		background-image:url("../images/fondo-artwork-1.jpg") !important;
-	}
-	/*Fondo rotatorio*/
-	#div-imagen-rotatoria{
-		display:none;
-	}
-	
-	/*Menu superior*/	
-	#contenedorTop{
-		height:auto;		
-		background-color:rgba(0,0,0,0.8);
-		background-image:none;
-		box-shadow:none;
-		
-		display:flex;
-		justify-content:center;
-		
-		overflow:visible;
-		
-		border-bottom-left-radius:20%;
-		border-bottom-right-radius:20%;
-	}
-	
-	#menu-mobile-div{
-		float:left;
-		display:flex;
-		justify-content:center;
-		flex-direction:column;
-	}
-
-	#menu-mobile-div img{
-		height:60px;
-		top:0px;
-	}
-	
-	#menu-mobile-icon-i{
-		position:absolute;
-		left:0;
-	}
-	
-	#menu-mobile-icon-d{
-		position:absolute;
-		right:0;
-	}
-	
-	#menu-mobile-div-info{
-		margin-top:-10px;
 	}
 	
 	.menu-normal{
@@ -847,14 +808,6 @@ table.acymailing_form{
 		animation: img-glow 2s linear infinite alternate;	
 	}
 	
-	#contenedorMid{
-		top:65px;
-	}
-	
-	/*Quitar banner*/
-	#div-cabecera-home{
-		display:none !important;
-	}
 	
 	#div-contenido.anchoArticulo{
 		width:95% !important;
@@ -899,7 +852,7 @@ table.acymailing_form{
 }
 
 
-@media (min-width:481px) and (max-width:639px)  { 
+@media (min-width:481px) and (max-width:640px)  { 
 /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 
 		body{
 		padding:0;
@@ -1028,14 +981,19 @@ table.acymailing_form{
   
 }
 
-
 /* media query para unificar las anteriores */
-@media screen and (max-width:639px){
+@media screen and (max-width:640px){
 	
 	/* Maquetación */
 	body{
 		min-height:500px;
 		overflow-y:visible !important;
+		background-image:url("../images/fondo-artwork-1.jpg") !important;
+	}
+	
+		/*Fondo rotatorio*/
+	#div-imagen-rotatoria{
+		display:none;
 	}
 	
 	.posicionamiento-top{	
@@ -1044,12 +1002,20 @@ table.acymailing_form{
 	}
 	
 	/* Menu superior */
-	#contenedorTop{
-		/*
+	#contenedorTop{		
 		background-image:none;
-		background-color:rgba(0,0,0,0);
+		background-color:rgba(0,0,0,0.8);
 		box-shadow:none;
-		*/
+		
+		display:flex;
+		justify-content:center;
+		
+		overflow:visible;
+		
+		border-bottom-left-radius:20%;
+		border-bottom-right-radius:20%;
+		
+		height:auto;
 	}
 	
 	/* */
@@ -1059,7 +1025,42 @@ table.acymailing_form{
 		box-shadow:none !important;
 	}
 	
-
+	#menu-mobile-div{
+		position:relative;
+		width:100%;
+		display:flex;
+		justify-content:center;
+		flex-direction:column;		
+	}
+	
+	#menu-mobile-div img{
+		height:60px;
+		top:0px;
+	}
+	
+	#menu-mobile-icon-i{
+		position:absolute;
+		left:0;
+		max-width:20%;
+	}
+	
+	#menu-mobile-icon-d{
+		position:absolute;
+		right:0;
+		max-width:20%;
+	}
+	
+	#menu-mobile-logo{
+		max-width:60%;
+		top:0px;
+		margin:0 auto;
+	}
+	
+	#menu-mobile-div-info{
+		margin-top:-0px;
+		max-width:90%;
+		margin:0 auto;
+	}
 	
 	.lang-block{
 		display:flex;
@@ -1089,6 +1090,15 @@ table.acymailing_form{
 		
 		width:50px;
 		height:50px;
+	}
+	
+	#contenedorMid{
+		top:65px;
+	}
+	
+	/*Quitar banner*/
+	#div-cabecera-home{
+		display:none !important;
 	}
 	
 	/* Galeria */
@@ -1130,7 +1140,29 @@ table.acymailing_form{
 	
 }
 
-@media (min-width:640px) and (max-width:899px)  { 
+
+@media screen and (max-width:640px) and (orientation:landscape){
+	body{
+		background-image:url("../images/fondo-artwork-1-landscape.jpg") !important;
+	}
+	
+	#contenedorMid{
+		top:55px;
+	}
+		
+	#div-contenido{
+		width:70%;
+		margin-top:20px;
+	}
+	
+	.item{
+		margin-top:0px;
+		margin-bottom:20px;
+	}
+}
+
+
+@media (min-width:641px) and (max-width:899px)  { 
 	/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */  
 	body{
 		padding:0;
@@ -1248,125 +1280,6 @@ table.acymailing_form{
 	}
 }
 	
-@media (max-width:900px) and (orientation:landscape){
-	
-	
-	/* Maquetación */
-	body{
-		min-height:500px;
-		overflow-y:visible !important;
-	}
-	
-	.posicionamiento-top{	
-		position:absolute;	
-		top:5px !important;
-	}
-	
-	/* Menu superior */
-	
-	.efecto-fondo-transparente{
-		background-image:none !important;
-		background-color:rgba(0,0,0,0) !important;	
-		box-shadow:none !important;
-	}
-	
-	#menu-mobile-div-expand{
-		display:flex !important;
-		flex-direction:column;
-		
-	}
-	#menu-mobile-div{
-		float:left;
-		display:flex;
-		justify-content:center;
-	}
-
-	#menu-mobile-div img{
-		height:50px;
-	}
-	
-	#div-top-news{
-		display:none;
-	}
-	
-	#div-top-menu{
-		display:none;
-	}
-	
-	/* Idiomas */
-	#div-top-idioma{
-		display:none;
-	}
-	
-	.lang-block{
-		display:flex;
-		justify-content:space-evenly;
-		align-items:center;
-		padding-top:10px !important;
-	}
-	
-	.lang-block>li>a{
-		padding:0px;
-	}
-	
-	.lang-block>li>a>img{		
-		transform:scale(2);
-		
-		border-radius:2px;
-	}
-
-	/* Boton back */
-	#div-back{
-		position:fixed;
-		top:0px;
-		left:unset;
-		right:0px;
-		
-		margin:5px;
-		
-		width:50px;
-		height:50px;
-	}
-	
-	/* Galeria */
-		#galeria-div-paginacion{
-		bottom:0px;
-		width:100%;		
-		z-index:2;		
-		margin-top:0px;
-		margin-bottom:0px;
-		
-		min-height:40px;
-		
-		background-color:rgba(0,0,0,0.9);
-		background-size:cover;
-		opacity:0.9;
-		
-		border-top-left-radius:20%;
-		border-top-right-radius:20%;
-		border-bottom-left-radius:0px;
-		border-top-right-radius:0px;
-		
-	}
-	
-	
-	#div-redes-sociales{
-		height:40px !important;
-		/*visibility:hidden !important;*/
-	}
-	
-	.invisibleEnGaleria{
-		visibility:hidden !important;
-	}
-	
-	#div-redes-sociales img{
-		height:30px !important;
-		width:30px !important;
-		margin:5px 5px;
-	}
-	
-	
-}
 
 @media screen and (min-width:900px) and (max-width:1024px){
 	/* tablet, landscape iPad, lo-res laptops ands desktops */ 
@@ -1680,7 +1593,7 @@ table.acymailing_form{
 /****************************************************/
 
 #div-overlay{
-	position:absolute;
+	position:fixed;
 	top:0;
 	left:0;
 	width:100%;

@@ -72,6 +72,7 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 
 <div id="contenedorTop" class="">
 	<div id="menu-mobile-div" class="menu-mobile" >
+		
 		<img id="menu-mobile-icon-i" class="menu-mobile-imagen-lateral" src="<?php echo $path_template . "images/logo-gold.png" ?>" onclick="openNav()"/>
 		<img id="menu-mobile-logo" src="<?php echo $path_template . "images/logo_central.png" ?>" onclick="openNav()"/>
 		<img id="menu-mobile-icon-d" class="menu-mobile-imagen-lateral" src="<?php echo $path_template . "images/logo-gold.png" ?>" onclick="openNav()"/>
@@ -79,6 +80,8 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 		<span>14-21 MAY 2019</span>
 		<span>DOÑANA, SPAIN</span>
 		</div>
+		
+		
 	</div>
 	
 	<div id="div-top-news" class="menu-normal">
