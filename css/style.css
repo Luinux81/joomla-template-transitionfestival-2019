@@ -605,6 +605,11 @@ span[class^=info-cabecera-lateral]{
 }
 
 
+.acymailing_module_form{
+	display:flex;
+	justify-content:center;
+}
+
 table.acymailing_form{
 	width:50% !important;
 }

@@ -46,8 +46,8 @@ $(document).ready(function(){
 	
 	resaltaItemMenuActual();
 	
-	if(!esGaleria()){
-		jQuery(".item-page").parent().addClass("anchoArticulo");
+	if(!esGaleria("")){
+		//jQuery(".item-page").parent().addClass("anchoArticulo");
 	}
 	else{
 		$(".item-page").parent().css("width","85% !important");
@@ -149,10 +149,20 @@ function esCategoria(url){
 	return (url.indexOf("option=com_content&view=category")>-1);
 }
 
-function esGaleria(){
-	var url=window.location.href;
+function esGaleria(url){
+	if(!url){
+		url=window.location.href;
+	}
 	
 	return (url.indexOf("?option=com_content&view=article&id=188")>-1);
+}
+
+function esArticuloEntradas(url){
+	if(!url){
+		url=window.location.href;
+	}
+	
+	return (url.indexOf("option=com_content&view=article&id=5")>-1 || url.indexOf("option=com_content&view=article&id=108")>-1);
 }
 
 function resaltaItemMenuActual(){
@@ -560,6 +570,7 @@ function cambiaPaginaGaleria(event,pagina){
 	setTimeout(function(){muestraGaleria(pagina);},1000);
 }
 
+
 function setAJAXlinks(){
 	var url;
 	
@@ -595,11 +606,10 @@ function setAJAXlinks(){
 	$(".lb-nav>a").unbind("click");
 	
 	/*Quitamos handler de los enlaces a redes sociales*/
-	$("#div-redes-sociales>a").unbind("click");
+	$("#div-redes-sociales>a.link-externo").unbind("click");
 	
 	
 }
-
 
 function ajaxLoad(url,tipo){
 	$("#div-contenido").fadeOut(1000);
@@ -607,6 +617,8 @@ function ajaxLoad(url,tipo){
 	if(!mostrarCabecera(url)){
 		$("#div-cabecera-home").fadeOut(1000);
 	}
+	
+	closeNav();
 	
 	$.get(url,function(response){
 		var aux=$("<div />").append(response);
@@ -626,11 +638,13 @@ function ajaxLoad(url,tipo){
 				
 				if(url.search("/en")>-1){
 					cambiaIdiomaMenu("en");
-					//console.log("Idioma:Eng");
+					$(".menuitem-destacado").attr("href",url+"?option=com_content&view=article&id=108")
+					//console.log("Idioma:Eng  URL:"+url);
 				}
 				else{
 					cambiaIdiomaMenu("es");
-					//console.log("Idioma:Esp");
+					$(".menuitem-destacado").attr("href",url+"?option=com_content&view=article&id=5")
+					//console.log("Idioma:Esp  URL:"+url);
 				}
 					
 				
@@ -641,7 +655,26 @@ function ajaxLoad(url,tipo){
 			default:
 				temp=aux.find("#div-contenido").html();				
 				$("#div-contenido").html(temp).fadeIn(1000);
+				if(/*esCategoria(url)*/ true){
+					$(".menuitem-nav-link")
+					.removeClass("menuitem-actual")
+					.each(function(){
+						if($(this).attr("href")==url){
+							$(this).addClass("menuitem-actual");
+						}
+					})
+					;
+					
+					
+				}
 		}
+		
+		$("#contenedorTop").removeClass("efecto-fondo-transparente");
+		$("#menu-mobile-logo").css("visibility","visible");
+		$("#menu-mobile-div-info").css("visibility","visible");
+		$("#contenedorMid").removeClass("posicionamiento-top");
+		
+		$("html, body").animate({ scrollTop: 0 }, 600);
 		
 		if(!mostrarBack(url)){
 			$("#div-back").hide();

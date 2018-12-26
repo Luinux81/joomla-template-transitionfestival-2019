@@ -59,12 +59,12 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	<a href="./index.php"><img id="logo-central-mobile" src="<?php echo $path_template . "images/logo_central.png" ?>"/></a>
 	<a class="fuenteMenu" href="./index.php?video=0">HOME</a>
-	<a id="menuitem-mob-festival" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=8">FESTIVAL</a>
-	<a id="menuitem-mob-guia" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=9">GUIA</a>
-	<a id="menuitem-mob-lugar" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=10">LUGAR</a>
-	<a id="menuitem-mob-entradas" class="fuenteMenu menuitem-destacado" href="./index.php?option=com_content&view=article&id=5">ENTRADAS</a>
-	<a id="menuitem-mob-galeria" class="fuenteMenu" href="./index.php?option=com_content&view=article&id=188" >GALERIA</a>
-	<a id="menuitem-mob-contacto" class="fuenteMenu" href="./index.php?option=com_content&view=category&id=11">CONTACTO</a>
+	<a id="menuitem-mob-festival" class="fuenteMenu menuitem-nav-link" href="./index.php?option=com_content&view=category&id=8">FESTIVAL</a>
+	<a id="menuitem-mob-guia" class="fuenteMenu menuitem-nav-link" href="./index.php?option=com_content&view=category&id=9">GUIA</a>
+	<a id="menuitem-mob-lugar" class="fuenteMenu menuitem-nav-link" href="./index.php?option=com_content&view=category&id=10">LUGAR</a>
+	<a id="menuitem-mob-entradas" class="fuenteMenu menuitem-nav-link menuitem-destacado" href="./index.php?option=com_content&view=article&id=5">ENTRADAS</a>
+	<a id="menuitem-mob-galeria" class="fuenteMenu menuitem-nav-link" href="./index.php?option=com_content&view=article&id=188" >GALERIA</a>
+	<a id="menuitem-mob-contacto" class="fuenteMenu menuitem-nav-link" href="./index.php?option=com_content&view=category&id=11">CONTACTO</a>
 	<div id="menuitem-mob-div-idioma">
 		<jdoc:include type="modules" name="position-0" style="html5" />
 	</div>
@@ -145,16 +145,16 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 </div>
 
 <div id="div-redes-sociales" style="">
-	<a href="https://www.youtube.com/channel/UCUZ0gYELad1YgZLbI7P-0dQ" target="_blank" rel="noopener">
+	<a href="https://www.youtube.com/channel/UCUZ0gYELad1YgZLbI7P-0dQ" class="link-externo" target="_blank" rel="noopener">
 		<img class="img-red-social" src="<?php echo $path_template . "images/redes_sociales/youtube.png" ?>" />
 	</a>
-	<a href="https://www.facebook.com/TransitionFestival/" target="_blank" rel="noopener">
+	<a href="https://www.facebook.com/TransitionFestival/" class="link-externo"  target="_blank" rel="noopener">
 		<img class="img-red-social" src="<?php echo $path_template . "images/redes_sociales/facebook.png" ?>" />
 	</a>
-	<a href="https://www.instagram.com/transition.festival/" target="_blank" rel="noopener">
+	<a href="https://www.instagram.com/transition.festival/"  class="link-externo" target="_blank" rel="noopener">
 		<img class="img-red-social" src="<?php echo $path_template . "images/redes_sociales/instagram.png" ?>" />
 	</a>
-	<a href="https://twitter.com/transition_crew" target="_blank" rel="noopener">
+	<a href="https://twitter.com/transition_crew"  class="link-externo" target="_blank" rel="noopener">
 		<img class="img-red-social" src="<?php echo $path_template . "images/redes_sociales/twitter.png" ?>" />
 	</a>
 	<a href="./index.php?option=com_content&view=article&id=119" target="_parent">
