@@ -1,4 +1,8 @@
-jQuery(document).ready(function(){
+var urlRetorno;
+
+$(document).ready(function(){
+	
+	urlRetorno=window.location.href;
 	
 	if(!mostarVideo()){
 		$("#div-overlay").hide();		
@@ -11,21 +15,10 @@ jQuery(document).ready(function(){
 		
 	}
 	
-	/*
-	$("#contenedorTop a, .item a").click(function(){
-		
-		$("#contenedorTop").fadeOut(750);	
-		$("#div-contenido").fadeOut(500);
-		$("#div-cabecera-home").fadeOut(500);
-		$("#div-redes-sociales").fadeOut(500);
-		
-	});
-	*/
-	
 	setAJAXlinks();
 	
-	jQuery(".item").hide();
-	jQuery("#div-contenido").hide().fadeIn(1000);
+	$(".item").hide();
+	$("#div-contenido").hide().fadeIn(1000);
 	
 	var dias=diasRestantes();
 
@@ -148,6 +141,14 @@ function esHomePage(url){
 	
 }
 
+function esCategoria(url){
+	if(!url){
+		url=window.location.href;
+	}
+	
+	return (url.indexOf("option=com_content&view=category")>-1);
+}
+
 function esGaleria(){
 	var url=window.location.href;
 	
@@ -214,7 +215,10 @@ function mostarVideo(){
 }
 
 function closeVideo(){
-	var url=window.location.href;
+	var url;
+	
+	/*
+	url=window.location.href;
 	
 	if(url.indexOf("?")>-1){
 		window.location.href=url+"&video=0";	
@@ -222,40 +226,67 @@ function closeVideo(){
 	else{
 		window.location.href=url+"?video=0";
 	}
+	*/
+	
+	url=getURLBase("");
+	window.location.href=url+"?video=0";
 	
 }
 
+
 function cambiaIdiomaMenu(lang){
 	if(lang=="es"){
-		jQuery("#menuitem-festival").html("FESTIVAL");
-		jQuery("#menuitem-mob-festival").html("FESTIVAL");
-		jQuery("#menuitem-guia").html("GUIA");
-		jQuery("#menuitem-mob-guia").html("GUIA");
-		jQuery("#menuitem-lugar").html("LUGAR");
-		jQuery("#menuitem-mob-lugar").html("LUGAR");
-		jQuery("#menuitem-entradas").html("ENTRADAS");
-		jQuery("#menuitem-mob-entradas").html("ENTRADAS");
-		jQuery("#menuitem-galeria").html("GALERIA");
-		jQuery("#menuitem-mob-galeria").html("GALERIA");
-		jQuery("#menuitem-contacto").html("CONTACTO");
-		jQuery("#menuitem-mob-contacto").html("CONTACTO");
+		$("#menuitem-festival").html("FESTIVAL");
+		$("#menuitem-mob-festival").html("FESTIVAL");
+		$("#menuitem-guia").html("GUIA");
+		$("#menuitem-mob-guia").html("GUIA");
+		$("#menuitem-lugar").html("LUGAR");
+		$("#menuitem-mob-lugar").html("LUGAR");
+		$("#menuitem-entradas").html("ENTRADAS");
+		$("#menuitem-mob-entradas").html("ENTRADAS");
+		$("#menuitem-galeria").html("GALERIA");
+		$("#menuitem-mob-galeria").html("GALERIA");
+		$("#menuitem-contacto").html("CONTACTO");
+		$("#menuitem-mob-contacto").html("CONTACTO");
 	}
 	else{
-		jQuery("#menuitem-festival").html("FESTIVAL");
-		jQuery("#menuitem-mob-festival").html("FESTIVAL");
-		jQuery("#menuitem-guia").html("GUIDE");
-		jQuery("#menuitem-mob-guia").html("GUIDE");
-		jQuery("#menuitem-lugar").html("LOCATION");
-		jQuery("#menuitem-mob-lugar").html("LOCATION");
-		jQuery("#menuitem-entradas").html("TICKETS");
-		jQuery("#menuitem-mob-entradas").html("TICKETS");
-		jQuery("#menuitem-galeria").html("GALLERY");
-		jQuery("#menuitem-mob-galeria").html("GALLERY");
-		jQuery("#menuitem-contacto").html("CONTACT");
-		jQuery("#menuitem-mob-contacto").html("CONTACT");
+		$("#menuitem-festival").html("FESTIVAL");
+		$("#menuitem-mob-festival").html("FESTIVAL");
+		$("#menuitem-guia").html("GUIDE");
+		$("#menuitem-mob-guia").html("GUIDE");
+		$("#menuitem-lugar").html("LOCATION");
+		$("#menuitem-mob-lugar").html("LOCATION");
+		$("#menuitem-entradas").html("TICKETS");
+		$("#menuitem-mob-entradas").html("TICKETS");
+		$("#menuitem-galeria").html("GALLERY");
+		$("#menuitem-mob-galeria").html("GALLERY");
+		$("#menuitem-contacto").html("CONTACT");
+		$("#menuitem-mob-contacto").html("CONTACT");
 	}
 }
 
+
+function mostrarBack(url){
+	if(!url){
+		url=window.location.href;
+	}
+	
+	if(!(esHomePage(url) || esCategoria(url))){
+		return true;
+	}
+	else{
+		urlRetorno=url;
+		return false;
+	}
+}
+
+function volverBack(){
+	var temp=urlRetorno;
+	
+	ajaxLoad(temp);
+	
+	urlRetorno=temp;
+}
 
 function muestraGaleria(paginaActual){
 	var columnas=3;	
@@ -274,7 +305,7 @@ function muestraGaleria(paginaActual){
 	if(!paginaActual){
 		paginaActual=1;
 	}
-	console.log(paginaActual);
+	//console.log(paginaActual);
 	
 	
 	var minIndex=0;
@@ -530,16 +561,29 @@ function cambiaPaginaGaleria(event,pagina){
 }
 
 function setAJAXlinks(){
+	var url;
+	
 	$("a").unbind("click");
 	
+	//Todos los enlaces
 	$("a").on("click",function(evento){
-		var url=$(this).attr("href");
-		console.log(url);
+		url=$(this).attr("href");
+		//console.log(url);
 		
 		if(url!="javascript:void(0)"){
 			ajaxLoad(url);
 		}
 		
+		evento.preventDefault();
+	});
+	
+	//Enlaces de idiomas
+	$(".lang-block>li>a").unbind("click");
+	$(".lang-block>li>a").on("click",function(evento){
+		if(url!="javascript:void(0)"){
+			url=$(this).attr("href");
+			ajaxLoad(url,"idioma");
+		}
 		evento.preventDefault();
 	});
 	
@@ -557,7 +601,7 @@ function setAJAXlinks(){
 }
 
 
-function ajaxLoad(url){
+function ajaxLoad(url,tipo){
 	$("#div-contenido").fadeOut(1000);
 	
 	if(!mostrarCabecera(url)){
@@ -565,18 +609,54 @@ function ajaxLoad(url){
 	}
 	
 	$.get(url,function(response){
-		console.log("exito");
-
-		var aux=$("<div />").append(response).find("#div-contenido").html();
+		var aux=$("<div />").append(response);
+		var temp;
 		
-		$("#div-contenido").html(aux).fadeIn(1000);
+		switch(tipo){
+			case "idioma":
+				$("#contenedorTop").fadeOut(500);
+				$("#div-cabecera-home").fadeOut(200);
+				
+				//console.log("url:"+ url + "  tipo:" + tipo);
+				temp=aux.find("#div-contenido").html();
+				$("#div-contenido").html(temp).fadeIn(1000);
+				
+				temp=aux.find("#contenedorTop").html();
+				$("#contenedorTop").html(temp);
+				
+				if(url.search("/en")>-1){
+					cambiaIdiomaMenu("en");
+					//console.log("Idioma:Eng");
+				}
+				else{
+					cambiaIdiomaMenu("es");
+					//console.log("Idioma:Esp");
+				}
+					
+				
+				$("#contenedorTop").hide().fadeIn(500);
+				$("#div-cabecera-home").fadeIn(500);
+				break;
+				
+			default:
+				temp=aux.find("#div-contenido").html();				
+				$("#div-contenido").html(temp).fadeIn(1000);
+		}
+		
+		if(!mostrarBack(url)){
+			$("#div-back").hide();
+		}
+		else{
+			$("#div-back").show();
+		}
 		
 		if(mostrarCabecera(url)){
 			$("#div-cabecera-home").fadeIn(1000);
 		}
-		
 		setAJAXlinks();
 	});
+	
+
 }
 
 

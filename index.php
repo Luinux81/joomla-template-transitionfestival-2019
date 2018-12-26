@@ -106,7 +106,9 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 		<jdoc:include type="modules" name="position-0" style="html5" />
 	</div>
 	<div id="div-back">			
-		<img id="img-back" src="<?php echo $path_template . "images/back.png" ?>" onclick="history.back();" />			
+		
+			<img id="img-back" src="<?php echo $path_template . "images/back.png" ?>" onclick="volverBack();" />			
+		
 	</div>
 
 </div>
