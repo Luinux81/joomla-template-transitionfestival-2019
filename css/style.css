@@ -413,7 +413,7 @@ span[class^=info-cabecera-lateral]{
 	text-align:center;
 	line-height:1.4;
 	
-	visibility:hidden;
+	/*visibility:hidden;*/
 	
 }
 
@@ -604,11 +604,6 @@ span[class^=info-cabecera-lateral]{
   justify-content:center;
 }
 
-
-.acymailing_module_form{
-	display:flex;
-	justify-content:center;
-}
 
 table.acymailing_form{
 	width:50% !important;

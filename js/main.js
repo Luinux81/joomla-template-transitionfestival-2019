@@ -1,35 +1,44 @@
-var urlRetorno;
-
-$(document).ready(function(){
+jQuery(document).ready(function(){
+	//you can now use $ as your jQuery object.
+	//jQuery(".menuitem-nav-link").addClass("fuenteMenu");  
 	
-	urlRetorno=window.location.href;
+	
+	//jQuery("#contenedorTop").hide().fadeIn(1000);
 	
 	if(!mostarVideo()){
 		$("#div-overlay").hide();		
 		$("#video-contenedor > iframe").remove();
 		$("body").css("overflow-y","visible");
 	}
-	else{	
-		$("#video-contenedor").append("<iframe title='video' width='100%' height='100%' src='https://www.youtube.com/embed/-2y2MPoDFvI?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
-		$("#div-overlay").fadeIn(1000);
+	else{
+        //$("body").css("overflow-y","hidden");		
+		$("#video-contenedor").append("<iframe width='100%' height='100%' src='https://www.youtube.com/embed/-2y2MPoDFvI?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
+		$("#div-overlay")
+			//.css("overflow","hidden")
+			.fadeIn(1000);
 		
 	}
 	
-	setAJAXlinks();
+	$("#contenedorTop a, .item a").click(function(){
+		$("#contenedorTop").fadeOut(750);	
+		$("#div-contenido").fadeOut(500);
+		$("#div-cabecera-home").fadeOut(500);
+		$("#div-redes-sociales").fadeOut(500);
+	});
 	
-	$(".item").hide();
-	$("#div-contenido").hide().fadeIn(1000);
+	jQuery(".item").hide();
+	jQuery("#div-contenido").hide().fadeIn(1000);
 	
 	var dias=diasRestantes();
 
-	jQuery("#dias-numero").html(dias);
+	$(".dias-restantes").html(dias);
 	
 	
 	$("#contenedorTop").hide().css("visibility","visible").delay(500).fadeIn(500);
 	
 	$("#div-redes-sociales").hide().css("visibility","visible").delay(1000).fadeIn(500);
 	
-	if(mostrarCabecera("")){		
+	if(mostrarCabecera()){		
 		$(".div-cabecera").css("visibility","visible");
 		$("#div-cabecera-home").hide().delay(1000).fadeIn(500);
 		$("#div-back").css("display","none");
@@ -46,8 +55,8 @@ $(document).ready(function(){
 	
 	resaltaItemMenuActual();
 	
-	if(!esGaleria("")){
-		//jQuery(".item-page").parent().addClass("anchoArticulo");
+	if(!esGaleria()){
+		jQuery(".item-page").parent().addClass("anchoArticulo");
 	}
 	else{
 		$(".item-page").parent().css("width","85% !important");
@@ -68,20 +77,14 @@ $(document).ready(function(){
 });
 
 
-function mostrarCabecera(url){
-	var aux;
-	if(url==""){
-		aux=window.location.href;
-	}
-	else{
-		aux=url;
-	}
+function mostrarCabecera(){
+	var url=window.location.href;
 	
-	if(esHomePage(aux)){
+	if(esHomePage(url)){
 		return true;
 	}
 	else{
-		if(aux.search("option=com_content&view=category")>-1){
+		if(url.search("option=com_content&view=category")>-1){
 			return true;
 		}
 		else{
@@ -91,12 +94,14 @@ function mostrarCabecera(url){
 }
 
 function esHomePage(url){
-	var res=window.location.href;
-	if(url!=""){
-		res=url;
-	}
+	var res=url;
 	
 	var index=res.indexOf("?option=com_content");	
+	if(index>0){
+		return false;		
+	}
+
+	index=res.indexOf("?option=com_fwgallerylight");
 	if(index>0){
 		return false;		
 	}
@@ -110,13 +115,11 @@ function esHomePage(url){
 	res=res.slice(res.indexOf("index.php"));
 	res=res.slice(9);
 	
-	
-	if((res=="") || (res=="es") || (res=="en")){
+	if(res==""){
 		return true;
 	}
 	else{
-		index=res.indexOf("/");		
-		
+		index=res.indexOf("/");			
 		if(index>=0){
 			res=res.slice(index+1,res.length);
 			if(res==""){
@@ -141,28 +144,11 @@ function esHomePage(url){
 	
 }
 
-function esCategoria(url){
-	if(!url){
-		url=window.location.href;
-	}
-	
-	return (url.indexOf("option=com_content&view=category")>-1);
-}
 
-function esGaleria(url){
-	if(!url){
-		url=window.location.href;
-	}
+function esGaleria(){
+	var url=window.location.href;
 	
 	return (url.indexOf("?option=com_content&view=article&id=188")>-1);
-}
-
-function esArticuloEntradas(url){
-	if(!url){
-		url=window.location.href;
-	}
-	
-	return (url.indexOf("option=com_content&view=article&id=5")>-1 || url.indexOf("option=com_content&view=article&id=108")>-1);
 }
 
 function resaltaItemMenuActual(){
@@ -188,7 +174,7 @@ function resaltaItemMenuActual(){
 }
 
 function diasRestantes(){
-	var festival=new Date('2018-04-25').getTime();
+	var festival=new Date('2019-05-14').getTime();
 	var ahora=Date.now();
 	var aux=0;
     
@@ -214,6 +200,7 @@ function closeNav() {
 }
 
 function mostarVideo(){
+  /*
 	var url=window.location.href;
 
 	if(url.search("video=0")>-1){
@@ -222,13 +209,12 @@ function mostarVideo(){
 	else{
 		return esHomePage(url);
 	}
+    */
+  return false;
 }
 
 function closeVideo(){
-	var url;
-	
-	/*
-	url=window.location.href;
+	var url=window.location.href;
 	
 	if(url.indexOf("?")>-1){
 		window.location.href=url+"&video=0";	
@@ -236,69 +222,42 @@ function closeVideo(){
 	else{
 		window.location.href=url+"?video=0";
 	}
-	*/
-	
-	url=getURLBase("");
-	window.location.href=url+"?video=0";
 	
 }
-
 
 function cambiaIdiomaMenu(lang){
 	if(lang=="es"){
-		$("#menuitem-festival").html("FESTIVAL");
-		$("#menuitem-mob-festival").html("FESTIVAL");
-		$("#menuitem-guia").html("GUIA");
-		$("#menuitem-mob-guia").html("GUIA");
-		$("#menuitem-lugar").html("LUGAR");
-		$("#menuitem-mob-lugar").html("LUGAR");
-		$("#menuitem-entradas").html("ENTRADAS");
-		$("#menuitem-mob-entradas").html("ENTRADAS");
-		$("#menuitem-galeria").html("GALERIA");
-		$("#menuitem-mob-galeria").html("GALERIA");
-		$("#menuitem-contacto").html("CONTACTO");
-		$("#menuitem-mob-contacto").html("CONTACTO");
+		jQuery("#menuitem-festival").html("FESTIVAL");
+		jQuery("#menuitem-mob-festival").html("FESTIVAL");
+		jQuery("#menuitem-guia").html("GUIA");
+		jQuery("#menuitem-mob-guia").html("GUIA");
+		jQuery("#menuitem-lugar").html("LUGAR");
+		jQuery("#menuitem-mob-lugar").html("LUGAR");
+		jQuery("#menuitem-entradas").html("ENTRADAS");
+		jQuery("#menuitem-mob-entradas").html("ENTRADAS");
+		jQuery("#menuitem-galeria").html("GALERIA");
+		jQuery("#menuitem-mob-galeria").html("GALERIA");
+		jQuery("#menuitem-contacto").html("CONTACTO");
+		jQuery("#menuitem-mob-contacto").html("CONTACTO");
 	}
 	else{
-		$("#menuitem-festival").html("FESTIVAL");
-		$("#menuitem-mob-festival").html("FESTIVAL");
-		$("#menuitem-guia").html("GUIDE");
-		$("#menuitem-mob-guia").html("GUIDE");
-		$("#menuitem-lugar").html("LOCATION");
-		$("#menuitem-mob-lugar").html("LOCATION");
-		$("#menuitem-entradas").html("TICKETS");
-		$("#menuitem-mob-entradas").html("TICKETS");
-		$("#menuitem-galeria").html("GALLERY");
-		$("#menuitem-mob-galeria").html("GALLERY");
-		$("#menuitem-contacto").html("CONTACT");
-		$("#menuitem-mob-contacto").html("CONTACT");
+		jQuery("#menuitem-festival").html("FESTIVAL");
+		jQuery("#menuitem-mob-festival").html("FESTIVAL");
+		jQuery("#menuitem-guia").html("GUIDE");
+		jQuery("#menuitem-mob-guia").html("GUIDE");
+		jQuery("#menuitem-lugar").html("LOCATION");
+		jQuery("#menuitem-mob-lugar").html("LOCATION");
+		jQuery("#menuitem-entradas").html("TICKETS");
+		jQuery("#menuitem-mob-entradas").html("TICKETS");
+		jQuery("#menuitem-galeria").html("GALLERY");
+		jQuery("#menuitem-mob-galeria").html("GALLERY");
+		jQuery("#menuitem-contacto").html("CONTACT");
+		jQuery("#menuitem-mob-contacto").html("CONTACT");
 	}
 }
 
 
-function mostrarBack(url){
-	if(!url){
-		url=window.location.href;
-	}
-	
-	if(!(esHomePage(url) || esCategoria(url))){
-		return true;
-	}
-	else{
-		urlRetorno=url;
-		return false;
-	}
-}
-
-function volverBack(){
-	var temp=urlRetorno;
-	
-	ajaxLoad(temp);
-	
-	urlRetorno=temp;
-}
-
-function muestraGaleria(paginaActual){
+function muestraGaleria(){
 	var columnas=3;	
 	var maxFilasPorPagina=10;
 	
@@ -308,15 +267,7 @@ function muestraGaleria(paginaActual){
 	var maxIndexPorPagina=columnas*maxFilasPorPagina;
 	var maxPagina;
 	
-	/*
 	var paginaActual=1;
-	*/
-	
-	if(!paginaActual){
-		paginaActual=1;
-	}
-	//console.log(paginaActual);
-	
 	
 	var minIndex=0;
 	var maxIndex=0;
@@ -325,16 +276,13 @@ function muestraGaleria(paginaActual){
 	var indexFila=0;
 	
 	if($("div[itemprop=articleBody]").length){
-		$("#div-galeria").remove();
 		$("div[itemprop=articleBody]").append("<div id='div-galeria'></div>");
 			
-		var urlBase=getURLBase("");
+		var urlBase=getURLBase();
 		
-		/*
 		if(getParameterByName("pagina",null)){
 			paginaActual=getParameterByName("pagina",null);			
 		}
-		*/
 		
 		minIndex=((paginaActual-1)*maxIndexPorPagina);
 		maxIndex=minIndex+maxIndexPorPagina;		
@@ -411,8 +359,9 @@ function muestraGaleria(paginaActual){
 				if(i==paginaActual){
 					actual=" class='menuitem-actual' ";
 				}
-					$("#galeria-div-paginacion").append("<a href='./?option=com_content&view=article&id=188&pagina="+i+"' "+actual+" onclick='cambiaPaginaGaleria(event,"+i+");'>"+i+"</a>");
+					$("#galeria-div-paginacion").append("<a href='./?option=com_content&view=article&id=188&pagina="+i+"' "+actual+">"+i+"</a>");
 			}
+			
 			
 			/*Maquetación*/
 			$("#div-contenido").removeClass("anchoArticulo");
@@ -433,8 +382,6 @@ function muestraGaleria(paginaActual){
 			$(".lightbox").addClass("galeria-lightbox-hack");
 
 			$("#contenedorMid").addClass("posicionamiento-top");
-			
-			setAJAXlinks();
 		});
 	}
 }
@@ -491,13 +438,13 @@ function getImagen(index,url){
 		.addClass("galeria-imagen")
 		.addClass("galeria-imagen-precarga")
 		.addClass("galeria-limitador-altura-min")
-		.attr("src",getURLBase("")+"templates/transitionfestival2019/images/loading-2.gif")
+		.attr("src",getURLBase()+"templates/transitionfestival2019/images/loading-2.gif")
 	;
 	
 	$("#galeria-imagen-loader-fondo-"+index)
 		.addClass("galeria-imagen-precarga-fondo")
 		.addClass("galeria-limitador-altura-max")
-		.attr("src",getURLBase("")+"templates/transitionfestival2019/images/logo-mini-verde.png")
+		.attr("src",getURLBase()+"templates/transitionfestival2019/images/logo-mini-verde.png")
 	;
 	
 	/*
@@ -543,13 +490,26 @@ function preLoadImagen(index,url){
 	descargaImagen.src=url;
 }
 
+/*
+function muestraPopUp(url){
+	$("#popup-imagen").attr("src",url).show();
+	$("#popup-div-overlay").fadeIn(1000);
+	document.getElementById("div-redes-sociales").focus(); 
+}
 
+function ocultaPopUp(){
+	$("#popup-imagen").fadeOut(500);
+	
+	window.setTimeout(function(){
+		$("#popup-imagen").attr("src","#");
+	},	500);
+	
+	$("#popup-div-overlay").fadeOut(1000);
+}
+*/
 
-function getURLBase(url){
+function getURLBase(){
 	var urlBase=window.location.href;	
-	if(url!=""){
-		urlBase=url;
-	}
 	urlBase=urlBase.substring(0,urlBase.indexOf("index.php"));
 	return urlBase;
 }
@@ -563,133 +523,4 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-
-function cambiaPaginaGaleria(event,pagina){
-	event.preventDefault();
-	$("#div-galeria").fadeOut(1000);
-	setTimeout(function(){muestraGaleria(pagina);},1000);
-}
-
-
-function setAJAXlinks(){
-	var url;
-	
-	$("a").unbind("click");
-	
-	//Todos los enlaces
-	$("a").on("click",function(evento){
-		url=$(this).attr("href");
-		//console.log(url);
-		
-		if(url!="javascript:void(0)"){
-			ajaxLoad(url);
-		}
-		
-		evento.preventDefault();
-	});
-	
-	//Enlaces de idiomas
-	$(".lang-block>li>a").unbind("click");
-	$(".lang-block>li>a").on("click",function(evento){
-		if(url!="javascript:void(0)"){
-			url=$(this).attr("href");
-			ajaxLoad(url,"idioma");
-		}
-		evento.preventDefault();
-	});
-	
-	/*Quitamos handler de los enlaces de la galeria*/
-	$("#galeria-div-paginacion>a").unbind("click");
-	
-	/*Quitamos handler de los enlaces de lightbox*/
-	$(".lb-close").unbind("click");
-	$(".lb-nav>a").unbind("click");
-	
-	/*Quitamos handler de los enlaces a redes sociales*/
-	$("#div-redes-sociales>a.link-externo").unbind("click");
-	
-	
-}
-
-function ajaxLoad(url,tipo){
-	$("#div-contenido").fadeOut(1000);
-	
-	if(!mostrarCabecera(url)){
-		$("#div-cabecera-home").fadeOut(1000);
-	}
-	
-	closeNav();
-	
-	$.get(url,function(response){
-		var aux=$("<div />").append(response);
-		var temp;
-		
-		switch(tipo){
-			case "idioma":
-				$("#contenedorTop").fadeOut(500);
-				$("#div-cabecera-home").fadeOut(200);
-				
-				//console.log("url:"+ url + "  tipo:" + tipo);
-				temp=aux.find("#div-contenido").html();
-				$("#div-contenido").html(temp).fadeIn(1000);
-				
-				temp=aux.find("#contenedorTop").html();
-				$("#contenedorTop").html(temp);
-				
-				if(url.search("/en")>-1){
-					cambiaIdiomaMenu("en");
-					$(".menuitem-destacado").attr("href",url+"?option=com_content&view=article&id=108")
-					//console.log("Idioma:Eng  URL:"+url);
-				}
-				else{
-					cambiaIdiomaMenu("es");
-					$(".menuitem-destacado").attr("href",url+"?option=com_content&view=article&id=5")
-					//console.log("Idioma:Esp  URL:"+url);
-				}
-					
-				
-				$("#contenedorTop").hide().fadeIn(500);
-				$("#div-cabecera-home").fadeIn(500);
-				break;
-				
-			default:
-				temp=aux.find("#div-contenido").html();				
-				$("#div-contenido").html(temp).fadeIn(1000);
-				if(/*esCategoria(url)*/ true){
-					$(".menuitem-nav-link")
-					.removeClass("menuitem-actual")
-					.each(function(){
-						if($(this).attr("href")==url){
-							$(this).addClass("menuitem-actual");
-						}
-					})
-					;
-					
-					
-				}
-		}
-		
-		$("#contenedorTop").removeClass("efecto-fondo-transparente");
-		$("#menu-mobile-logo").css("visibility","visible");
-		$("#menu-mobile-div-info").css("visibility","visible");
-		$("#contenedorMid").removeClass("posicionamiento-top");
-		
-		$("html, body").animate({ scrollTop: 0 }, 600);
-		
-		if(!mostrarBack(url)){
-			$("#div-back").hide();
-		}
-		else{
-			$("#div-back").show();
-		}
-		
-		if(mostrarCabecera(url)){
-			$("#div-cabecera-home").fadeIn(1000);
-		}
-		setAJAXlinks();
-	});
-	
-
-}
-
 
