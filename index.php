@@ -76,11 +76,15 @@ $path_template   = JURI::base(true).'/templates/'.$app->getTemplate().'/';
 		<img id="menu-mobile-icon-i" class="menu-mobile-imagen-lateral" src="<?php echo $path_template . "images/logo-gold.png" ?>" onclick="openNav()"/>
 		<img id="menu-mobile-logo" src="<?php echo $path_template . "images/logo_central.png" ?>" onclick="openNav()"/>
 		<img id="menu-mobile-icon-d" class="menu-mobile-imagen-lateral" src="<?php echo $path_template . "images/logo-gold.png" ?>" onclick="openNav()"/>
-		<div id="menu-mobile-div-info" class="fuenteWeb" >
-		<span>14-21 MAY 2019</span>
-		<span>DOÑANA, SPAIN</span>
+		<div id="menu-mobile-div-info">
+			<div id="menu-mobile-div-info-text" class="fuenteWeb" >
+			<span>14-21 MAY 2019</span>
+			<span>DOÑANA, SPAIN</span>
+			</div>
+			<div id="menu-mobile-div-button">
+				<a id="menu-mobile-button" href="./index.php?option=com_content&view=article&id=5">GET YOUR TICKET</a>
+			</div>
 		</div>
-		
 		
 	</div>
 	

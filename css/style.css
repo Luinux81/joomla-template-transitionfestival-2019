@@ -873,10 +873,32 @@ table.acymailing_form{
 		margin:0 auto;
 	}
 	
-	#menu-mobile-div-info{
+	#menu-mobile-div-info-text{
 		margin-top:-0px;
 		max-width:90%;
 		margin:0 auto;
+		text-align:center;
+		margin-bottom:1em;
+	}
+	
+	#menu-mobile-div-button{
+		text-align:center;
+	}
+	
+	#menu-mobile-button{
+		background-color:#dacf6d;
+		color:black;
+		padding:.5em;
+		border-radius:20px;
+		text-decoration:none;
+		font-weight:bold;
+		cursor:pointer;
+		
+		border:black 1px solid;
+		
+		-webkit-box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
+		-moz-box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
+		box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
 	}
 	
 	/* Idioma */
@@ -916,7 +938,7 @@ table.acymailing_form{
 	
 	/* Seccion contenido */
 	#contenedorMid{
-		top:65px;
+		top:9em;
 	}
 
 	.posicionamiento-top{	
@@ -974,7 +996,7 @@ table.acymailing_form{
 	}
 	
 	#contenedorMid{
-		top:55px;
+		top:8em;
 	}
 		
 	#div-contenido{
